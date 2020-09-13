@@ -11,16 +11,19 @@ import CoreML
 import Vision
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     
     var chosenImage = CIImage()
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        imageView.layer.borderColor = UIColor(red: 0, green: 0.5, blue: 0, alpha: 0.1).cgColor
+        imageView.layer.borderWidth = 2
+        
     }
-
+    
     @IBAction func changeClicked(_ sender: Any) {
         
         let picker = UIImagePickerController()
@@ -57,7 +60,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 if let results = vnrequest.results as? [VNClassificationObservation] {
                     
                     if results.count > 0 {
-                    
+                        
                         let topResult = results.first
                         
                         DispatchQueue.main.async {
@@ -88,7 +91,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
         }
         
-
+        
         
         
         
